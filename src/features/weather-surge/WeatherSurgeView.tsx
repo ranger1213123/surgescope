@@ -114,7 +114,7 @@ export function WeatherSurgeView() {
           <div>
             <p className="hero-eyebrow">天气溢价</p>
             <h2>天气—溢价联动分析</h2>
-            <p className="hero-subtitle">一场暴风雨来了，网约车价格多久会涨？涨多少？Uber 和 Lyft 谁先涨？这页把天气数据和溢价数据对齐到同一时间轴上，逐小时还原答案。</p>
+            <p className="hero-subtitle">一场暴风雨来了，网约车价格多久上涨？涨多少？Uber 和 Lyft 谁先涨？这页把天气数据和溢价数据对齐到同一时间轴，逐小时给出答案。</p>
           </div>
           {ctx.selectedRange.length === 2 && (
             <button className="clear-btn" onClick={() => ctx.setSelectedRange([])}>清除时间筛选</button>
@@ -146,7 +146,7 @@ export function WeatherSurgeView() {
       <section className="card spotlight">
         <div className="card-head">
           <h3>天气—溢价时间河流图</h3>
-          <p>上半部分是天气（温度、降水、能见度），下半是 Uber 和 Lyft 的溢价曲线。拖拽底部滑块可以框选一段时间放大看细节。</p>
+          <p>上半部分展示天气（温度、降水、能见度），下半是 Uber 和 Lyft 的溢价曲线。拖拽底部滑块框选时间范围查看细节。</p>
           <div className="legend-inline">
             <span><i className="swatch" style={{ background: '#3B71F3' }} /> Uber</span>
             <span><i className="swatch" style={{ background: '#E8613C' }} /> Lyft</span>
@@ -169,7 +169,7 @@ export function WeatherSurgeView() {
         <section className="card col-7">
           <div className="card-head">
             <h3>气象—溢价散点矩阵</h3>
-            <p>每个小图是一个气象指标 vs 溢价的关系。点越集中说明相关性越强——比如降水和溢价明显正相关，温度则没那么直接。</p>
+            <p>每个小图展示一个气象指标与溢价的关系。点越集中说明相关性越强——降水和溢价呈明显正相关，温度则关联较弱。</p>
           </div>
           <div className="card-body">
             <WeatherSurgeScatterMatrix data={visiblePlatform} />
@@ -179,7 +179,7 @@ export function WeatherSurgeView() {
                 和溢价相关性最强的指标是<strong>{scatterInsight.strongest.name}</strong>（r={scatterInsight.strongest.val.toFixed(2)}），
                 降水强度与溢价呈正相关（r={scatterInsight.precipCorr.toFixed(2)}），
                 温度与溢价呈负相关（r={scatterInsight.tempCorr.toFixed(2)}），
-                这符合直觉：越冷越湿的天气，车越难叫、价越贵。
+                这符合直觉：天气越冷越湿，供需越紧张、溢价越高。
               </div>
             )}
           </div>
@@ -188,7 +188,7 @@ export function WeatherSurgeView() {
         <section className="card col-5">
           <div className="card-head">
             <h3>天气分桶箱线图</h3>
-            <p>同一种天气类型下 Uber 和 Lyft 的溢价范围、中位数、异常值。箱子越扁说明那家平台在这种天气下定价越稳定。</p>
+            <p>每种天气类型下 Uber 和 Lyft 的溢价范围、中位数、异常值。箱子越扁说明该平台在此天气下定价越稳定。</p>
           </div>
           <div className="card-body">
             <WeatherBucketBoxplot data={visiblePlatform} precomputedStats={ctx.weatherData ?? {}} />
@@ -197,7 +197,7 @@ export function WeatherSurgeView() {
                 <strong>怎么看这张图：</strong>
                 <strong>{boxplotInsight.label}</strong>天气下 Lyft 比 Uber 溢价高的幅度最大（+{(boxplotInsight.diff * 100).toFixed(1)}%），
                 Lyft {boxplotInsight.lyft.toFixed(2)}x vs Uber {boxplotInsight.uber.toFixed(2)}x。
-                大部分天气类型下 Lyft 中位数溢价高于 Uber，但 Uber 的异常值（箱子外的离群点）更多——极端情况下 Uber 的价格可以飙得很高。
+                大部分天气类型下 Lyft 中位数溢价高于 Uber，但 Uber 的异常值（箱外离群点）更多——极端情况下 Uber 的高溢价订单更分散。
               </div>
             )}
           </div>
@@ -208,7 +208,7 @@ export function WeatherSurgeView() {
       <section className="card">
         <div className="card-head">
           <h3>事件对齐响应曲线</h3>
-          <p>把所有天气突变（暴雨、暴雪等）的时刻对齐到 t=0，往前看 3 小时、往后看 3 小时。实线是平均溢价，半透明带是波动范围。可以很清楚地看到溢价从什么时候开始爬升、什么时候到顶。</p>
+          <p>将所有天气突变（暴雨、暴雪等）的时刻对齐到 t=0，前推 3 小时、后推 3 小时。实线为平均溢价，半透明带为波动范围。可以清楚看到溢价从何时开始爬升、何时到达峰值。</p>
         </div>
         <div className="card-body">
           <EventAlignedCurve data={visibleCurves} />
@@ -216,8 +216,8 @@ export function WeatherSurgeView() {
             <div className="card-insight">
               <strong>怎么看这张图：</strong>
               天气突变后，溢价通常在 <strong>1–2 小时</strong>内达到峰值（最高约 {eventInsight.maxCurve.toFixed(2)}x），然后逐渐回落。
-              Uber 和 Lyft 的响应速度相似，但 Lyft 的峰值通常比 Uber 高出 {eventInsight.pctAbove.toFixed(0)}% 左右——
-              恶劣天气来临时 Lyft 加价更快更猛。
+              Uber 和 Lyft 的响应速度相近，但 Lyft 的峰值通常比 Uber 高出约 {eventInsight.pctAbove.toFixed(0)}%——
+              恶劣天气下 Lyft 加价更快、幅度更大。
             </div>
           )}
         </div>

@@ -15,7 +15,7 @@ function InteractionPanel() {
       <div className="brushing-info">
         <h3>跨模块联动交互</h3>
         <p>
-          弦图、飞线地图、车型分布图订阅同一交互状态。悬停/点击任意元素，所有视图同步响应。
+          弦图、飞线地图、车型分布图共享同一交互状态。悬停/点击任意元素，所有视图同步响应。
           按 Esc 键清除全部选中。
         </p>
       </div>
@@ -70,7 +70,7 @@ function OdFlowDashboard({ data }: { data: OdFlowData }) {
           <p className="hero-eyebrow">流向分析</p>
           <h2>OD 流向与车型分布</h2>
           <p className="hero-subtitle">
-            波士顿 12 个核心区域之间，人和车是怎么流动的？弦图看流向大小、飞线地图看地理分布、车型分布看每条线路上 UberX 到 Black SUV 各占多少。
+            波士顿 12 个核心区域之间，人和车如何流动？弦图看流向规模、飞线地图看地理分布、车型分布看每条线路上各车型占比。
           </p>
 
           <div className="month-selector">

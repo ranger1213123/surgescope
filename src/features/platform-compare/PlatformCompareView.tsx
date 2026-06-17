@@ -698,10 +698,10 @@ function DiffBarChart({ data }: { data: CompareData }) {
       </div>
       <div style={{ marginTop: 10, padding: '10px 14px', background: 'rgba(59,113,243,0.04)', borderRadius: 8, fontSize: 12, color: '#5C564E', lineHeight: 1.6 }}>
         <strong>怎么看这张图：</strong>
-        六个维度里 Lyft 在 {lyftWins} 个上高于 Uber，Uber 在 {uberWins} 个上占优。
+        六个维度中 Lyft 在 {lyftWins} 个上高于 Uber，Uber 在 {uberWins} 个上占优。
         {lyftWins > uberWins
-          ? ' 整体来看 Lyft 略占上风，尤其是在雨雪天气响应和平均溢价上更激进。但 Uber 在溢价稳定性和高峰响应上表现更好——这意味着 Uber 的定价更可控、更可预测。两家的差异其实没有很多人想象的那么大，真正的分歧几乎都集中在极端天气场景下。'
-          : ' Uber 在溢价稳定性和高峰响应上更强，但 Lyft 在恶劣天气场景下定价更激进。两家的差异其实没有很多人想象的那么大（整体不到 3%），真正的分歧几乎都集中在极端天气场景下。'}
+          ? ' 整体来看 Lyft 略占上风，尤其在雨雪天气响应和平均溢价上更激进。但 Uber 在溢价稳定性和高峰响应上表现更好——意味着 Uber 的定价更可控、更可预测。两家差异其实没有想象中那么大，真正的分歧几乎都集中在极端天气场景下。'
+          : ' Uber 在溢价稳定性和高峰响应上更强，但 Lyft 在恶劣天气场景下定价更激进。两家差异其实没有想象中那么大（整体不到 3%），真正的分歧几乎都集中在极端天气场景下。'}
       </div>
     </div>
   );
@@ -766,8 +766,8 @@ export function PlatformCompareView() {
         <p className="hero-eyebrow">平台对比</p>
         <h2>Uber vs Lyft 定价策略对比</h2>
         <p className="hero-subtitle">
-          同一个小时、同一种天气、同一个区域——Uber 和 Lyft 给出的价格到底差多少？
-          下面用 {d.points.length} 条小时级数据，从分布形态、天气响应、时段差异等角度，把两家平台的定价逻辑拆开来看。
+          同一个小时、同一种天气、同一个区域——Uber 和 Lyft 的价格到底差多少？
+          下面用 {d.points.length} 条小时级数据，从分布形态、天气响应、时段差异等角度，拆解两家平台的定价逻辑。
         </p>
       </header>
 
@@ -797,19 +797,19 @@ export function PlatformCompareView() {
           <div className="card-head">
             <h3>溢价分布密度曲线</h3>
             <p>
-              蓝色是 Uber，橙色是 Lyft。曲线越高说明这个溢价水平出现的频率越高，虚线是各自的平均值。
-              两条曲线的形状非常接近，峰值都集中在 1.0x–1.2x 之间——大多数时候，两家平台的价格真的差不多。
-              但在右侧的"长尾"区域（1.5x 以上）能看到一些差异。
+              蓝色是 Uber，橙色是 Lyft。曲线越高说明该溢价水平出现频率越高，虚线标记各自的平均值。
+              两条曲线形状非常接近，峰值集中在 1.0x–1.2x——大多数时候两家平台定价确实接近。
+              但右侧「长尾」区域（1.5x 以上）能看出一些差异。
             </p>
           </div>
           <div className="card-body">
             <DensityCurves data={d} />
             <div className="card-insight">
               <strong>怎么看这张图：</strong>
-              两边的均值几乎一样（Uber {d.uberAvgSurge.toFixed(2)}x vs Lyft {d.lyftAvgSurge.toFixed(2)}x），
+              两边均值几乎相同（Uber {d.uberAvgSurge.toFixed(2)}x vs Lyft {d.lyftAvgSurge.toFixed(2)}x），
               但 Uber 的标准差更大（{d.uberStdSurge.toFixed(3)} vs {d.lyftStdSurge.toFixed(3)}），
-              也就是说 Uber 的价格波动更剧烈——它的算法在极端情况下会把价格推得更高，而 Lyft 的定价相对"克制"一些，
-              大部分时间集中在均值附近。不过别被平均值骗了，真正有意思的差异藏在不同天气类型里，往下看。
+              即 Uber 的价格波动更剧烈——其算法在极端情况下会把价格推得更高，Lyft 的定价相对集中。
+              不过别被均值误导，真正有意义的差异藏在不同天气类型里，往下看。
             </div>
           </div>
         </section>
@@ -817,8 +817,8 @@ export function PlatformCompareView() {
           <div className="card-head">
             <h3>不同天气下的溢价对比</h3>
             <p>
-              把数据按天气类型拆开看，两家的差异立刻就出来了。从左到右按溢价高低排列，
-              雪天（Snow）和暴雨（Heavy Rain）远远高于其他天气——这才是溢价的真正推手。
+              把数据按天气类型拆开，两家的差异一眼就能看出来。从左到右按溢价高低排列，
+              雪天（Snow）和暴雨（Heavy Rain）远高于其他天气——这才是溢价的真正驱动因素。
             </p>
           </div>
           <div className="card-body">
@@ -833,7 +833,7 @@ export function PlatformCompareView() {
                   <strong>怎么看这张图：</strong>
                   溢价最高的天气是<strong>{maxItem?.l ?? '未知'}</strong>，Uber {maxItem?.u.toFixed(2)}x、Lyft {maxItem?.ly.toFixed(2)}x。
                   在全部 {total} 种天气中，Lyft 在 <strong>{lyftWins}</strong> 种天气下溢价高于 Uber，
-                  尤其雨雪天加价更猛——Lyft 似乎更倾向于在恶劣天气中利用供需失衡提高价格。
+                  尤其雨雪天加价更主动——Lyft 在恶劣天气中更倾向于通过涨价来应对供需失衡。
                 </div>
               );
             })()}
@@ -846,8 +846,8 @@ export function PlatformCompareView() {
         <div className="card-head">
           <h3>时段 × 天气溢价差热力矩阵</h3>
           <p>
-            这张图最有意思——横轴是 24 小时，纵轴是不同天气，每个格子的颜色表示 Lyft 减 Uber 的溢价差。
-            偏红 = 这个时段/天气组合下 Lyft 更贵，偏蓝 = Uber 更贵。深夜+雨雪的右下角是一片红，凌晨+晴天的左上是蓝色——定价差异确实有规律。
+            横轴是 24 小时，纵轴是不同天气，每个格子的颜色表示 Lyft 减 Uber 的溢价差。
+            偏红 = 该时段/天气组合下 Lyft 更贵，偏蓝 = Uber 更贵。深夜+雨雪的右下角偏红，凌晨+晴天的左上偏蓝——定价差异有清晰的规律。
           </p>
         </div>
         <div className="card-body">
@@ -880,8 +880,8 @@ export function PlatformCompareView() {
           <div className="card-head">
             <h3>Uber vs Lyft 溢价散点</h3>
             <p>
-              每个点就是一个小时，横轴是 Uber 溢价、纵轴是 Lyft 溢价。如果两个平台在同一小时价格完全一样，点会正好落在对角线上。
-              在对角线上方 = 那个小时 Lyft 更贵，下方 = Uber 更贵。不同颜色代表不同天气，可以看看哪种天气下哪个平台更"狠"。
+              每个点代表一个小时，横轴 Uber 溢价、纵轴 Lyft 溢价。两点在同一小时价格相同则落于对角线上。
+              对角线上方 = 该小时 Lyft 更贵，下方 = Uber 更贵。不同颜色代表不同天气类型，可以看到哪种天气下哪个平台加价更激进。
             </p>
           </div>
           <div className="card-body">
@@ -894,11 +894,11 @@ export function PlatformCompareView() {
                   <strong>怎么看这张图：</strong>
                   总共 <strong>{abovePct}%</strong> 的点在对角线上方，也就是说六成以上的时间里 Lyft 比 Uber 贵。
                   {Number(abovePct) > 55
-                    ? ' 这个优势在溢价越高的区间越明显——当溢价超过 1.5x 时，几乎都是雪天和暴雨天，而 Lyft 在这些场景下定价明显更激进。'
+                    ? ' 溢价越高的区间优势越明显——超过 1.5x 的时段几乎都是雪天和暴雨天，而 Lyft 在这些场景下定价更激进。'
                     : Number(abovePct) > 50
                     ? ' 差异不算大，两家的定价方向大体一致，但在高溢价区间（1.5x 以上）能看到 Lyft 略占上风。'
-                    : ' Uber 在多数场景下价格反而更高，这可能跟它的车型结构和用户群体有关。'}
-                  同一个小时的溢价通常高度相关——如果 Uber 觉得该涨价了，Lyft 大概率也会跟上，只是幅度不同。
+                    : ' Uber 在多数场景下价格反而更高，这可能与其车型结构和用户群体有关。'}
+                  同一小时的溢价通常高度相关——如果 Uber 认为该涨价了，Lyft 大概率会跟进，只是幅度不同。
                 </div>
               );
             })()}
@@ -908,8 +908,8 @@ export function PlatformCompareView() {
           <div className="card-head">
             <h3>六维差异对比</h3>
             <p>
-              把六个核心维度的差异放在一起对比，一目了然。蓝条向左 = Uber 更强，橙条向右 = Lyft 更强。
-              条越长说明差距越大。溢价稳定性、高峰响应这些维度上两家各有胜负，但雨雪天气响应和平均溢价上 Lyft 明显占上风。
+              六个核心维度的差异放在一起对比，一目了然。蓝条向左 = Uber 占优，橙条向右 = Lyft 占优。
+              条越长差距越大。溢价稳定性和高峰响应上两家各有胜负，但雨雪天气响应和平均溢价 Lyft 明显占上风。
             </p>
           </div>
           <div className="card-body">
@@ -921,9 +921,9 @@ export function PlatformCompareView() {
       {/* Key Findings — narrative section, not a card */}
       <section style={{ marginTop: 40, padding: '36px 0', borderTop: '1px solid var(--border)' }}>
         <div className="feature-head">
-          <h3>一句话总结：Uber 更稳，Lyft 更狠</h3>
+          <h3>一句话总结：Uber 更稳，Lyft 更激进</h3>
           <p style={{ marginBottom: 24, fontSize: 13, color: 'var(--text-secondary)', lineHeight: 1.75 }}>
-            综合 {d.points.length} 条数据的对比，下面四个发现基本概括了两家平台定价策略的核心差异。
+            综合 {d.points.length} 条数据的对比，下面四个发现概括了两家平台定价策略的核心差异。
           </p>
         </div>
         <div className="insight-list">
@@ -942,10 +942,10 @@ export function PlatformCompareView() {
               return uberPeak / d.uberAvgSurge;
             })();
             return [
-              { num: '01', title: `${lyftMoreAggressive ? 'Lyft' : 'Uber'} 在恶劣天气中定价更激进`, body: `雨雪天气下，${lyftMoreAggressive ? 'Lyft' : 'Uber'} 的平均溢价是 ${lyftMoreAggressive ? d.lyftBadWeatherSurge.toFixed(2) : d.uberBadWeatherSurge.toFixed(2)}x，比平时高出了 ${((lyftMoreAggressive ? lyftRainRatio : uberRainRatio) - 1) * 100 | 0}%。这很好理解——雨雪天需求暴涨，但没几个车主愿意在这种天气出来接单，供需严重失衡，价格自然飞涨。两家都涨，但 ${lyftMoreAggressive ? 'Lyft' : 'Uber'} 涨得更狠。` },
-              { num: '02', title: 'Uber 的价格更"神经质"，Lyft 更稳定', body: `从密度曲线和标准差来看，Uber 的溢价波动范围比 Lyft 更大。Uber 的标准差是 ${d.uberStdSurge.toFixed(3)}，Lyft 是 ${d.lyftStdSurge.toFixed(3)}。这意味着 Uber 的算法对供需变化更敏感——风平浪静时它可能比 Lyft 便宜，但一有风吹草动它涨得也更快。Lyft 的策略更像是"平稳运行、灾时加价"。` },
-              { num: '03', title: '高峰时段的加价逻辑不同', body: `早晚高峰（7-9 点、17-19 点）的场景下，${uberPeakRatio > lyftPeakRatio ? 'Uber' : 'Lyft'} 加价幅度更大——Uber 高峰溢价是平时的 ${uberPeakRatio.toFixed(2)} 倍，Lyft 是 ${lyftPeakRatio.toFixed(2)} 倍。通勤高峰是刚需，用户对价格的敏感度相对较低，这是平台最容易"赚一笔"的时间窗口。` },
-              { num: '04', title: '能见度下降时两平台反应差不多', body: `雾天或低能见度场景下，两家平台的溢价都有明显上升，但彼此之间的差异并不大。这种天气的供需变化对所有平台的影响是一致的——司机普遍开得慢、运力下降，价格自然水涨船高，算法差异在这种场景下被供需基本面覆盖掉了。` },
+              { num: '01', title: `${lyftMoreAggressive ? 'Lyft' : 'Uber'} 在恶劣天气中定价更激进`, body: `雨雪天气下，${lyftMoreAggressive ? 'Lyft' : 'Uber'} 的平均溢价为 ${lyftMoreAggressive ? d.lyftBadWeatherSurge.toFixed(2) : d.uberBadWeatherSurge.toFixed(2)}x，比平时高 ${((lyftMoreAggressive ? lyftRainRatio : uberRainRatio) - 1) * 100 | 0}%。雨雪天需求激增，但车主不愿在这种天气接单，供需严重失衡，价格自然上涨。两家都涨，但 ${lyftMoreAggressive ? 'Lyft' : 'Uber'} 涨幅更大。` },
+              { num: '02', title: 'Uber 价格波动更大，Lyft 更稳定', body: `从密度曲线和标准差来看，Uber 的溢价波动范围比 Lyft 更大。Uber 标准差为 ${d.uberStdSurge.toFixed(3)}，Lyft 为 ${d.lyftStdSurge.toFixed(3)}。这说明 Uber 的算法对供需变化更敏感——供需平稳时可能比 Lyft 便宜，但稍有变化涨价也更快。Lyft 的策略更接近"平稳运行、灾时加价"。` },
+              { num: '03', title: '高峰时段的加价逻辑不同', body: `早晚高峰（7-9 点、17-19 点）时段，${uberPeakRatio > lyftPeakRatio ? 'Uber' : 'Lyft'} 加价幅度更大——Uber 高峰溢价为平时的 ${uberPeakRatio.toFixed(2)} 倍，Lyft 为 ${lyftPeakRatio.toFixed(2)} 倍。通勤高峰是刚需，用户价格敏感度低，这是平台溢价空间最大的时间窗口。` },
+              { num: '04', title: '低能见度下两平台反应趋同', body: `雾天或低能见度场景下，两家平台溢价都有明显上升，但彼此差异并不大。这种天气对供需的影响是全局性的——司机普遍减速、运力下降，价格自然水涨船高，算法差异在供需基本面面前被覆盖了。` },
             ];
           })().map(item => (
             <div key={item.num} className="insight-item">

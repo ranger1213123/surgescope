@@ -190,7 +190,7 @@ export function TimeRiverChart({ data, selectedRange, onBrushChange }: Props) {
     const brushG = root.append('g').attr('class', 'brush-layer').call(brush);
     root.append('text').attr('class', 'brush-label').attr('x', 0).attr('y', 410)
       .attr('font-size', 10).attr('fill', '#5C564E')
-      .text('时间刷选：拖拽选择联动窗口，单击空白处清除');
+      .text('刷选时间范围：拖拽框选联动窗口，单击空白处清除');
   }, [data]);
 
   // Full re-render only when data changes

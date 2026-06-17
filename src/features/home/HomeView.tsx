@@ -365,9 +365,8 @@ function CalendarHeatmap({ data }: { data: HourlyPoint[] }) {
       <div className="feature-head" style={{ marginBottom: 12 }}>
         <h3>日历热力图 · 日均溢价</h3>
         <p>
-          11 月和 12 月每一天的平均溢价用颜色深浅来表示，格子越红意味着那天溢价越高。
-          每个格子上下两半分别是 Uber（上半）和 Lyft（下半），方便快速对比。悬停可以看到具体数值。
-          可以明显看到 12 月中旬有一片深红色区域——那正是暴风雪袭击波士顿的日子。
+          每个格子上下两半分别是 Uber（上半）和 Lyft（下半），颜色越深溢价越高。
+          12 月中旬有一片深红色区域——那正是暴风雪袭击波士顿的几天。悬停可查看具体数值。
         </p>
       </div>
       <div ref={containerRef} style={{ width: '100%', position: 'relative', overflowX: 'auto' }}>
@@ -436,8 +435,8 @@ export function HomeView() {
         <p className="hero-eyebrow">总览面板</p>
         <h2>波士顿网约车动态溢价总览</h2>
         <p className="hero-subtitle">
-          2018 年 11 月到 12 月，波士顿进入冬季，共有 {data.length} 个小时级数据点，覆盖了从晴天到暴雪的 10 种天气。
-          这段时间里，Uber 和 Lyft 的定价算法一直在根据供需变化实时调整——尤其是在雨雪天，溢价可以飙到平时的两三倍。
+          2018 年 11 月到 12 月，波士顿冬季，共 {data.length} 个小时级数据点，覆盖晴天到暴雪共 10 种天气。
+          Uber 和 Lyft 的定价算法随供需实时波动——雨雪天溢价可达平时的两到三倍。
         </p>
       </header>
 
@@ -456,7 +455,7 @@ export function HomeView() {
         <div className="stat-cell">
           <span className="stat-value stat-highlight">+{kpis?.lyftSnowPremium ?? '-'}%</span>
           <span className="stat-label">暴雪天 Lyft 比 Uber 贵</span>
-          <span className="stat-detail">极端天气下 Lyft 加价更猛</span>
+          <span className="stat-detail">极端天气下 Lyft 加价幅度更大</span>
         </div>
         <div className="stat-cell">
           <span className="stat-value">{kpis?.uberAvg ?? '-'}x</span>
@@ -470,9 +469,9 @@ export function HomeView() {
         <div className="feature-head">
           <h3>全时段溢价走势</h3>
           <p>
-            下面这张图是这两个月里 Uber（蓝线）和 Lyft（橙线）溢价倍数的完整轨迹。
-            可以看到，大多数时间溢价在 1.0x–1.2x 之间波动，但 12 月中旬出现了一个非常明显的尖峰——那几天波士顿遭遇了暴风雪。
-            拖拽图表下方的滑块可以框选任意时间段，选中后会联动到「天气溢价」分析页面。
+            下面这张图是 Uber（蓝线）和 Lyft（橙线）在两个月里的完整溢价轨迹。
+            大多数时间溢价在 1.0x–1.2x 之间波动，但 12 月中旬有一个明显尖峰——那几天波士顿遭遇了暴风雪。
+            拖拽下方滑块框选任意时间段，选中后联动到「天气溢价」页面查看细节。
             {brushInfo && <strong style={{ color: 'var(--accent)' }}> 当前已框选：{brushInfo}</strong>}
           </p>
         </div>
@@ -491,7 +490,7 @@ export function HomeView() {
         <div className="card col-4">
           <div className="card-head">
             <h3>天气类型分布</h3>
-            <p>这两个月里波士顿的天气构成。阴天和多云占了大多数，但也有几次明显的雨雪过程。</p>
+            <p>两个月内波士顿的天气构成。阴天和多云占多数，雨雪过程虽少但对溢价影响最大。</p>
           </div>
           <div className="card-body" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16 }}>
             <WeatherDonut data={data} />
@@ -529,36 +528,36 @@ export function HomeView() {
         return (
           <section style={{ marginTop: 28, padding: '36px 0', borderTop: '1px solid var(--border)' }}>
             <div className="feature-head">
-              <h3>两个月的故事：平时差不多，暴雪见真章</h3>
+              <h3>两个月的故事：日常接近，暴雪拉开差距</h3>
               <p style={{ marginBottom: 18, fontSize: 13, color: 'var(--text-secondary)', lineHeight: 1.7 }}>
-                分析这 1,464 个小时的数据之后，最核心的发现其实很简单——
+                分析全部 1,464 条小时级数据后，核心发现其实很简单——
               </p>
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 24 }}>
               <div>
-                <h4 style={{ fontSize: 15, fontWeight: 700, marginBottom: 8, color: 'var(--text-primary)' }}>晴天时两家差不多</h4>
+                <h4 style={{ fontSize: 15, fontWeight: 700, marginBottom: 8, color: 'var(--text-primary)' }}>晴天时两家差距不大</h4>
                 <p style={{ fontSize: 13, color: 'var(--text-secondary)', lineHeight: 1.75 }}>
-                  在天气正常的日子里，Uber 和 Lyft 的溢价几乎不相上下。11 月 Uber 平均 {novUber.toFixed(2)}x、Lyft {novLyft.toFixed(2)}x；
-                  约 <strong>{lyftAbovePct}%</strong> 的小时里 Lyft 略贵一些，但差距通常只有几个百分点。
-                  这个阶段的定价更多受早晚高峰和区域供需影响，而不是天气。
+                  天气正常时，Uber 和 Lyft 的溢价几乎不相上下。11 月 Uber 平均 {novUber.toFixed(2)}x、Lyft {novLyft.toFixed(2)}x；
+                  约 <strong>{lyftAbovePct}%</strong> 的小时里 Lyft 略高，但差距通常只有几个百分点。
+                  这阶段的定价更多受早晚高峰和区域供需影响，而非天气。
                 </p>
               </div>
               <div>
-                <h4 style={{ fontSize: 15, fontWeight: 700, marginBottom: 8, color: 'var(--text-primary)' }}>暴雪一来差距就拉开了</h4>
+                <h4 style={{ fontSize: 15, fontWeight: 700, marginBottom: 8, color: 'var(--text-primary)' }}>暴雪一来差距立刻拉开</h4>
                 <p style={{ fontSize: 13, color: 'var(--text-secondary)', lineHeight: 1.75 }}>
-                  12 月进入雪季后，两边的平均溢价都上去了——Uber {decUber.toFixed(2)}x、Lyft {decLyft.toFixed(2)}x。
+                  进入 12 月雪季后，两边平均溢价同步上升——Uber {decUber.toFixed(2)}x、Lyft {decLyft.toFixed(2)}x。
                   真正拉开差距的是暴雪天：Lyft 峰值冲到 <strong>{snowLyftPeak.toFixed(2)}x</strong>，Uber 峰值 {snowUberPeak.toFixed(2)}x，
                   Lyft 在极端天气时比 Uber 贵了大约 <strong>{kpis?.lyftSnowPremium ?? '?'}%</strong>。
-                  这说明 Lyft 的动态定价算法对天气信号更敏感，或者说 Lyft 在恶劣天气时更愿意让价格飞涨来调节供需。
+                  这说明 Lyft 的定价算法对天气信号更敏感，在恶劣天气时更倾向于通过涨价来调节供需。
                 </p>
               </div>
               <div>
-                <h4 style={{ fontSize: 15, fontWeight: 700, marginBottom: 8, color: 'var(--text-primary)' }}>溢价的传导需要一两个小时</h4>
+                <h4 style={{ fontSize: 15, fontWeight: 700, marginBottom: 8, color: 'var(--text-primary)' }}>溢价传导有 1–2 小时延迟</h4>
                 <p style={{ fontSize: 13, color: 'var(--text-secondary)', lineHeight: 1.75 }}>
-                  从数据的时间序列来看，天气突变（比如突然下大雨或下雪）后，溢价并不会立刻跳升。
-                  通常有 1–2 小时的滞后——先是订单量激增，车主供给跟不上，然后算法才逐步抬价。
-                  这个滞后窗口在不同平台之间有微妙差异，详情可以看「天气溢价」页的时间河流图和事件对齐曲线。
+                  天气突变（如突降大雨或暴雪）后，溢价并不会立即跳升。通常有 1–2 小时的滞后窗口——
+                  先是订单激增、运力跟不上，算法才逐步抬价。这个滞后窗口在不同平台之间有微妙差异，
+                  详情见「天气溢价」页的时间河流图和事件对齐曲线。
                 </p>
               </div>
             </div>
@@ -569,9 +568,9 @@ export function HomeView() {
       {/* Quick Navigation — asymmetric grid, still with cards but more descriptive */}
       <div className="quick-nav-grid">
         {[
-          { tab: 'compare' as TabId, title: '平台对比', desc: '把 Uber 和 Lyft 放在一起比：谁更贵？贵多少？什么时候贵？密度曲线、热力矩阵、六维差异图。', action: '进入 →', icon: '⚖' },
-          { tab: 'weather' as TabId, title: '天气溢价', desc: '时间河流图、散点矩阵、事件对齐曲线——看一场暴风雪前后，Uber 和 Lyft 的价格是怎么一步步涨上去的。', action: '进入 →', icon: '🌦' },
-          { tab: 'flow' as TabId, title: '流向与车型', desc: '弦图和飞线地图看波士顿 12 个区域之间的 OD 流量，车型分布看 UberX 到 Black SUV 各自占多少。', action: '进入 →', icon: '🗺' },
+          { tab: 'compare' as TabId, title: '平台对比', desc: 'Uber 和 Lyft 逐项对比：谁更贵、贵多少、什么时候贵。密度曲线、热力矩阵、六维差异图。', action: '进入 →', icon: '⚖' },
+          { tab: 'weather' as TabId, title: '天气溢价', desc: '时间河流图、散点矩阵、事件对齐曲线——看暴风雪前后，Uber 和 Lyft 的价格如何逐小时上涨。', action: '进入 →', icon: '🌦' },
+          { tab: 'flow' as TabId, title: '流向与车型', desc: '弦图和飞线地图展示波士顿 12 个区域之间的 OD 流向，车型分布覆盖 UberX 到 Black SUV 各档位。', action: '进入 →', icon: '🗺' },
         ].map((item, i) => (
           <motion.button
             key={item.tab}

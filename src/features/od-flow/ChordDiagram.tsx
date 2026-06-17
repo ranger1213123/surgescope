@@ -100,8 +100,8 @@ export function ChordDiagram({ data }: { data: OdFlowData }) {
         <p className="eyebrow">弦图</p>
         <h2>弦图 · 流向关系拓扑</h2>
         <p className="card-desc">
-          外圈弧段是 12 个区域，弧越长说明进出流量越大。中间的弦带是有向 OD 流——越粗订单越多。
-          点击弦带或弧段可以联动地图和车型分布图。
+          外圈弧段是 12 个区域，弧越长进出流量越大。中间的弦带是有向 OD 流——越粗订单越多。
+          点击弦带或弧段可联动地图和车型分布图。
         </p>
       </div>
 

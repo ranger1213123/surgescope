@@ -90,8 +90,8 @@ export function VehicleStackChart({ links }: VehicleStackChartProps) {
         <h2>车型产品分布</h2>
         <p className="card-desc">
           {selectedLinkId
-            ? `当前选中：${chartData.title}。经济型（UberX/Lyft）占大头，豪华车型只在长距离线路有存在感。`
-            : "所有 OD 对汇总。可以看到 UberX 和 Lyft 是绝对主力，拼车和豪华车型占比相对小。点击弦带或飞线看单条线路的车型构成。"}
+            ? `当前选中：${chartData.title}。经济型（UberX/Lyft）占主导，豪华车型只在长距离线路有一定占比。`
+            : "所有 OD 对汇总。UberX 和 Lyft 是主要车型，拼车和豪华车型占比相对较小。点击弦带或飞线查看单条线路的车型构成。"}
         </p>
       </div>
 
@@ -198,7 +198,7 @@ export function VehicleStackChart({ links }: VehicleStackChartProps) {
           <strong> {vehicleLabel(chartData.vehicles[0].type)}</strong> 占比最高（{chartData.vehicles[0].pct}%），
           高端车型（Black / Lux 系列）合计占比
           {chartData.vehicles.filter(v => v.type.includes('Black') || v.type.includes('Lux')).reduce((s, v) => s + v.pct, 0).toFixed(1)}%，
-          反映波士顿地区以经济/标准车型为主，高端出行需求集中在特定场景。
+          反映波士顿地区以经济和标准车型为主，高端出行需求集中于特定场景。
         </div>
       )}
     </section>

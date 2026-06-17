@@ -239,9 +239,9 @@ export function LandingView({ onEnter }: Props) {
               margin: '0 auto 40px',
               lineHeight: 1.7,
             }}>
-              Uber vs Lyft 在雨雪天气下的定价策略差异分析
+              雨雪天叫车，谁更贵？贵多少？——波士顿冬季网约车定价对比
               <br />
-              2018年11月–12月 · 波士顿大区 · 1,464小时级数据
+              2018年11月–12月 · 波士顿大区 · 1,464条小时级数据
             </p>
 
             {/* Enter button */}

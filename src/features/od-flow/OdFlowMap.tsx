@@ -232,8 +232,8 @@ export function OdFlowMap({ data }: OdFlowMapProps) {
         <p className="eyebrow">飞线地图</p>
         <h2>飞线地图 · 真实地理底图</h2>
         <p className="card-desc">
-          在真实的波士顿地图上看 OD 流向。圆圈越大 = 区域订单越多，曲线越粗 = OD 流量越大，
-          颜色从绿到橙表示溢价的低到高。可以拖拽和缩放地图。
+          在波士顿真实地图上查看 OD 流向。圆圈越大 = 区域订单越多，曲线越粗 = OD 流量越大，
+          颜色从绿到橙表示溢价从低到高。可拖拽和缩放地图。
         </p>
       </div>
 
