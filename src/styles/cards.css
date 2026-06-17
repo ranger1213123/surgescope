@@ -1,0 +1,111 @@
+/* ========================= Card System ========================= */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  overflow: hidden;
+}
+
+.card:hover {
+  box-shadow: var(--shadow);
+  border-color: rgba(59, 113, 241, 0.1);
+}
+
+.card.interactive {
+  cursor: pointer;
+}
+.card.interactive:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.09);
+  border-color: var(--accent);
+}
+.card.interactive:active {
+  transform: translateY(-1px);
+}
+
+.card.accent {
+  border-color: var(--border-accent);
+  box-shadow: var(--shadow-sm), 0 0 0 1px rgba(59, 113, 241, 0.08);
+}
+
+/* ---- Card internals ---- */
+.card-body {
+  padding: 24px;
+}
+
+.card-head {
+  padding: 20px 24px 0;
+  margin-bottom: 16px;
+}
+
+.card-head h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+
+.card-head p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.card-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 0 24px;
+}
+
+/* ---- Insight / conclusion box ---- */
+.card-insight {
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: rgba(59, 113, 241, 0.04);
+  border-radius: 8px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  border-left: 3px solid var(--accent);
+  animation: fadeInUp 0.4s ease both;
+  animation-delay: 0.3s;
+}
+
+/* ---- KPI card ---- */
+.kpi-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  transition: all 0.3s ease;
+}
+.kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+  border-color: rgba(59, 113, 241, 0.15);
+}
+.kpi-card .kpi-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+.kpi-card .kpi-value {
+  display: block;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+.kpi-card .kpi-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+

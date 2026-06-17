@@ -1,0 +1,256 @@
+/* ========================= Keyframes & Animations ========================= */
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.94); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes tabUnderline {
+  from { width: 0; }
+  to { width: 20px; }
+}
+
+@keyframes countIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-border {
+  0%, 100% { border-color: var(--border-accent); }
+  50% { border-color: var(--accent); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(59, 113, 243, 0.3); }
+  50% { box-shadow: 0 0 0 8px rgba(59, 113, 243, 0); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: -200px 0; }
+  100% { background-position: calc(200px + 100%) 0; }
+}
+
+@keyframes draw-line {
+  to { stroke-dashoffset: 0; }
+}
+
+/* SVG path draw-in animation */
+.draw-in {
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  animation: draw-line 1.5s ease forwards;
+}
+.draw-in-fast {
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  animation: draw-line 0.8s ease forwards;
+}
+
+/* Fade-slide-up for chart groups */
+.chart-enter {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes ripple {
+  0% { transform: scale(0); opacity: 0.5; }
+  100% { transform: scale(4); opacity: 0; }
+}
+
+@keyframes bounce-in {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.05); }
+  70% { transform: scale(0.95); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ========================= Utility Animation Classes ========================= */
+
+/* Staggered children fade-in */
+.stagger-children > * {
+  opacity: 0;
+  animation: fadeInUp 0.5s ease forwards;
+}
+.stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.3s; }
+.stagger-children > *:nth-child(7) { animation-delay: 0.35s; }
+.stagger-children > *:nth-child(8) { animation-delay: 0.4s; }
+
+/* Fade in on mount */
+.animate-in {
+  animation: fadeInUp 0.5s ease both;
+}
+
+/* Scale in for modals/popovers */
+.scale-in {
+  animation: scaleIn 0.3s ease both;
+}
+
+/* Slide in from right (tooltips, panels) */
+.slide-in-right {
+  animation: slideInRight 0.35s ease both;
+}
+
+/* Bounce in for attention */
+.bounce-in {
+  animation: bounce-in 0.6s ease both;
+}
+
+/* Float animation for decorative elements */
+.float-anim {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Glow pulse for active/selected states */
+.glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* Gradient shift for headers/banners */
+.gradient-shift {
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
+}
+
+/* Skeleton loading placeholder */
+.skeleton {
+  background: linear-gradient(90deg, #f0ede8 25%, #e8e4de 37%, #f0ede8 63%);
+  background-size: 200px 100%;
+  animation: skeleton-loading 1.4s ease infinite;
+  border-radius: 6px;
+}
+
+/* Card hover lift */
+.card-lift {
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+}
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Interactive card (for clickable cards) */
+.card-interactive {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+}
+.card-interactive:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-color: var(--accent);
+}
+.card-interactive:active {
+  transform: translateY(-1px);
+}
+
+/* Button press effect */
+.btn-press {
+  transition: transform 0.1s ease;
+}
+.btn-press:active {
+  transform: scale(0.96);
+}
+
+/* Smooth tab indicator slide */
+.tab-indicator {
+  transition: left 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Fade transition for view switching */
+.view-enter {
+  animation: fadeInUp 0.4s ease both;
+}
+
+/* Ripple effect container */
+.ripple-container {
+  position: relative;
+  overflow: hidden;
+}
+.ripple-container .ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+}
+
+/* Hover glow for SVG charts */
+.chart-hover-glow {
+  transition: filter 0.3s ease;
+}
+.chart-hover-glow:hover {
+  filter: drop-shadow(0 0 6px rgba(59, 113, 241, 0.25));
+}
+
+/* Number change animation */
+.number-pop {
+  animation: bounce-in 0.4s ease both;
+}
+
+/* Smooth color mode transition for chord/heatmap */
+.color-transition {
+  transition: fill 0.4s ease, stroke 0.4s ease, background 0.4s ease;
+}
+
+/* Page header entrance */
+.page-header {
+  animation: fadeInUp 0.6s ease both;
+}
+
+/* KPI row staggered */
+.kpi-row > * {
+  animation: fadeInUp 0.5s ease both;
+}
+.kpi-row > *:nth-child(1) { animation-delay: 0.1s; }
+.kpi-row > *:nth-child(2) { animation-delay: 0.18s; }
+.kpi-row > *:nth-child(3) { animation-delay: 0.26s; }
+.kpi-row > *:nth-child(4) { animation-delay: 0.34s; }
+
+/* Chart card reveal */
+.viz-grid-2col > *, .viz-grid-aside > * {
+  animation: fadeInUp 0.5s ease both;
+}
+.viz-grid-2col > *:nth-child(1), .viz-grid-aside > *:nth-child(1) { animation-delay: 0.05s; }
+.viz-grid-2col > *:nth-child(2), .viz-grid-aside > *:nth-child(2) { animation-delay: 0.15s; }

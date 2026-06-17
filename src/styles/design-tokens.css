@@ -1,0 +1,86 @@
+/* ========================= SurgeScope Design Tokens (Warm Light Theme) ========================= */
+:root {
+  /* ---- Backgrounds ---- */
+  --bg-primary: #FEFBF6;
+  --bg-secondary: #F8F4EE;
+  --bg-tertiary: #F0EBE1;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #FCFAF7;
+  --bg-input: rgba(0, 0, 0, 0.03);
+  --bg-nav: rgba(255, 255, 255, 0.82);
+
+  /* ---- Text ---- */
+  --text-primary: #2D2A26;
+  --text-secondary: #5C564E;
+  --text-muted: #8E887E;
+  --text-inverse: #FFFFFF;
+
+  /* ---- Brand & Platform ---- */
+  --accent: #E8613C;
+  --accent-light: #F0805E;
+  --accent-glow: rgba(232, 97, 60, 0.15);
+  --uber: #3B71F3;
+  --uber-light: #7BA2F8;
+  --lyft: #E8613C;
+  --lyft-light: #F0805E;
+
+  /* ---- Surge Scale ---- */
+  --surge-low: #2A9D8F;
+  --surge-mid: #E9C46A;
+  --surge-high: #E76F51;
+  --surge-extreme: #D62839;
+
+  /* ---- Weather ---- */
+  --weather-snow: #B8D4F0;
+  --weather-rain: #5BA4CF;
+  --weather-fog: #B0A99E;
+  --weather-clear: #F4CE6A;
+
+  /* ---- Borders ---- */
+  --border: rgba(0, 0, 0, 0.06);
+  --border-hover: rgba(0, 0, 0, 0.12);
+  --border-accent: rgba(232, 97, 60, 0.25);
+
+  /* ---- Shadows ---- */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.06);
+  --shadow-xl: 0 12px 36px rgba(0, 0, 0, 0.08);
+  --shadow-glow: 0 0 20px var(--accent-glow);
+
+  /* ---- Radius ---- */
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+
+  /* ---- Spacing ---- */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+
+  /* ---- Typography ---- */
+  --font: 'Inter', 'SF Pro Display', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Consolas', monospace;
+
+  /* ---- Layout ---- */
+  --nav-height: 60px;
+  --content-max: 1400px;
+
+  /* ---- Transitions ---- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+
+  font-family: var(--font);
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
