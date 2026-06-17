@@ -123,7 +123,7 @@ export function OdFlowModule() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("/data/od-flow.json")
+    fetch(`${import.meta.env.BASE_URL}data/od-flow.json`)
       .then((res) => {
         if (!res.ok) throw new Error(`数据加载失败：${res.status}`);
         return res.json() as Promise<OdFlowData>;

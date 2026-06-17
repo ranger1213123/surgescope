@@ -15,7 +15,7 @@ interface HourlyPoint {
 }
 
 function loadOverviewData(): Promise<HourlyPoint[]> {
-  return fetch('/data/hourly_series.json')
+  return fetch(`${import.meta.env.BASE_URL}data/hourly_series.json`)
     .then((r) => r.json())
     .then((raw) => {
       const points: HourlyPoint[] = [];

@@ -46,7 +46,7 @@ const UBER_COLOR = '#3B71F3';
 const LYFT_COLOR = '#E8613C';
 
 function loadData(): Promise<CompareData> {
-  return fetch('/data/hourly_series.json')
+  return fetch(`${import.meta.env.BASE_URL}data/hourly_series.json`)
     .then(r => r.json())
     .then(raw => {
       const points: HourlyPoint[] = [];
